@@ -1,0 +1,32 @@
+# YOLOv5-CoordDW-Pro-5x5
+# 目标：冲击 0.85 mAP，基于 0.77 版本改进
+nc: 15
+depth_multiple: 0.25
+width_multiple: 0.25
+
+anchors:
+  - [6,8, 10,12, 14,16] 
+
+backbone:
+  # [from, number, module, args]
+  [[-1, 1, Conv, [64, 6, 2, 2]],      # 0 - P1/2 (Stem 保持标准卷积)
+   
+   # 下采样层全部换成 CoordDWConv (5x5核)
+   [-1, 1, CoordDWConvPro, [128, 5, 2]], # 1 - P2/4 (注意：k=5, s=2)
+   [-1, 3, C3, [128]],                # 2 - 保持 C3 纯净，提供基础特征容量
+   
+   [-1, 1, CoordDWConvPro, [128, 5, 2]], # 3 - P3/8 (注意：k=5, s=2)
+   [-1, 6, C3, [128]],                # 4 - 核心特征提取
+  ]
+
+head:
+  # 这里使用 GhostConv 稍微压缩一下参数，为后面的注意力腾出算力
+  [[-1, 1, GhostConv, [128, 1, 1]],   # 5
+   [-1, 3, C3, [128, False]],         # 6
+   
+   # 【决胜手】在检测前加一层不改变尺寸的 CoordDWConv
+   # 这层负责在 8x8 的格子上做最后的“对焦”
+   [-1, 1, CoordDWConvPro, [128, 5, 1]], # 7 - (k=5, s=1)
+   
+   [[7], 1, Detect, [nc, anchors]],   # 8
+  ]

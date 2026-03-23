@@ -1,0 +1,127 @@
+7767517
+125 147
+Input                    in0                      0 1 in0
+Convolution              conv_39                  1 1 in0 1 0=16 1=6 11=6 12=1 13=2 14=2 2=1 3=2 4=2 5=1 6=1728
+Swish                    silu_22                  1 1 1 2
+ConvolutionDepthWise     convdw_80                1 1 2 3 0=16 1=5 11=5 12=1 13=2 14=2 2=1 3=2 4=2 5=0 6=400 7=16
+Convolution              conv_40                  1 1 3 4 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+HardSwish                hswish_6                 1 1 4 5 0=0.166667 1=0.5
+Split                    splitncnn_0              1 3 5 6 7 8
+Pooling                  avgpool2d_0              1 1 8 9 0=1 1=160 11=1 12=1 13=0 2=160 3=0 5=1 6=0
+Pooling                  avgpool2d_1              1 1 7 10 0=1 1=1 11=160 12=160 13=0 2=1 3=0 5=1 6=0
+Permute                  permute_71               1 1 10 11 0=1
+Concat                   cat_0                    2 1 9 11 12 0=1
+Convolution              conv_41                  1 1 12 13 0=8 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+HardSwish                hswish_7                 1 1 13 14 0=0.166667 1=0.5
+Slice                    tensor_split_0           1 2 14 15 16 -23300=2,160,-233 1=1
+Permute                  permute_72               1 1 16 17 0=1
+Convolution              convsigmoid_0            1 1 15 18 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+Convolution              convsigmoid_1            1 1 17 19 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+BinaryOp                 mul_0                    2 1 6 19 20 0=2
+BinaryOp                 mul_1                    2 1 20 18 21 0=2
+Split                    splitncnn_1              1 2 21 22 23
+Convolution              conv_44                  1 1 23 24 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_23                  1 1 24 25
+Split                    splitncnn_2              1 2 25 26 27
+Convolution              conv_45                  1 1 27 28 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+Swish                    silu_24                  1 1 28 29
+Convolution              conv_46                  1 1 29 30 0=16 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=2304
+Split                    splitncnn_3              1 2 30 31 32
+Sigmoid                  sigmoid_14               1 1 32 33
+BinaryOp                 mul_2                    2 1 31 33 34 0=2
+BinaryOp                 add_3                    2 1 26 34 35 0=0
+Convolution              conv_47                  1 1 22 36 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_25                  1 1 36 37
+Concat                   cat_1                    2 1 35 37 38 0=0
+Convolution              conv_48                  1 1 38 39 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1024
+Swish                    silu_26                  1 1 39 40
+ConvolutionDepthWise     convdw_81                1 1 40 41 0=32 1=5 11=5 12=1 13=2 14=2 2=1 3=2 4=2 5=0 6=800 7=32
+Convolution              conv_49                  1 1 41 42 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1024
+HardSwish                hswish_8                 1 1 42 43 0=0.166667 1=0.5
+Split                    splitncnn_4              1 3 43 44 45 46
+Pooling                  avgpool2d_2              1 1 46 47 0=1 1=80 11=1 12=1 13=0 2=80 3=0 5=1 6=0
+Pooling                  avgpool2d_3              1 1 45 48 0=1 1=1 11=80 12=80 13=0 2=1 3=0 5=1 6=0
+Permute                  permute_73               1 1 48 49 0=1
+Concat                   cat_2                    2 1 47 49 50 0=1
+Convolution              conv_50                  1 1 50 51 0=8 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+HardSwish                hswish_9                 1 1 51 52 0=0.166667 1=0.5
+Slice                    tensor_split_1           1 2 52 53 54 -23300=2,80,-233 1=1
+Permute                  permute_74               1 1 54 55 0=1
+Convolution              convsigmoid_2            1 1 53 56 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+Convolution              convsigmoid_3            1 1 55 57 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+BinaryOp                 mul_4                    2 1 44 57 58 0=2
+BinaryOp                 mul_5                    2 1 58 56 59 0=2
+Split                    splitncnn_5              1 2 59 60 61
+Convolution              conv_53                  1 1 61 62 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_27                  1 1 62 63
+Split                    splitncnn_6              1 2 63 64 65
+Convolution              conv_54                  1 1 65 66 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+Swish                    silu_28                  1 1 66 67
+Convolution              conv_55                  1 1 67 68 0=16 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=2304
+Split                    splitncnn_7              1 2 68 69 70
+Sigmoid                  sigmoid_17               1 1 70 71
+BinaryOp                 mul_6                    2 1 69 71 72 0=2
+BinaryOp                 add_7                    2 1 64 72 73 0=0
+Split                    splitncnn_8              1 2 73 74 75
+Convolution              conv_56                  1 1 75 76 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+Swish                    silu_29                  1 1 76 77
+Convolution              conv_57                  1 1 77 78 0=16 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=2304
+Split                    splitncnn_9              1 2 78 79 80
+Sigmoid                  sigmoid_18               1 1 80 81
+BinaryOp                 mul_8                    2 1 79 81 82 0=2
+BinaryOp                 add_9                    2 1 74 82 83 0=0
+Convolution              conv_58                  1 1 60 84 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_30                  1 1 84 85
+Concat                   cat_3                    2 1 83 85 86 0=0
+Convolution              conv_59                  1 1 86 87 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1024
+Swish                    silu_31                  1 1 87 88
+Convolution              conv_60                  1 1 88 89 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_32                  1 1 89 90
+Split                    splitncnn_10             1 2 90 91 92
+ConvolutionDepthWise     convdw_82                1 1 92 93 0=16 1=5 11=5 12=1 13=1 14=2 2=1 3=1 4=2 5=1 6=400 7=16
+Swish                    silu_33                  1 1 93 94
+Concat                   cat_4                    2 1 91 94 95 0=0
+Split                    splitncnn_11             1 2 95 96 97
+Convolution              conv_61                  1 1 97 98 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_34                  1 1 98 99
+Convolution              conv_62                  1 1 99 100 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+Swish                    silu_35                  1 1 100 101
+Convolution              conv_63                  1 1 101 102 0=16 1=3 11=3 12=1 13=1 14=1 2=1 3=1 4=1 5=1 6=2304
+Swish                    silu_36                  1 1 102 103
+Convolution              conv_64                  1 1 96 104 0=16 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=512
+Swish                    silu_37                  1 1 104 105
+Concat                   cat_5                    2 1 103 105 106 0=0
+Convolution              conv_65                  1 1 106 107 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1024
+Swish                    silu_38                  1 1 107 108
+Split                    splitncnn_12             1 2 108 109 110
+ConvolutionDepthWise     convdw_83                1 1 110 111 0=32 1=5 11=5 12=1 13=1 14=2 2=1 3=1 4=2 5=0 6=800 7=32
+Convolution              conv_66                  1 1 111 112 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1024
+HardSwish                hswish_10                1 1 112 113 0=0.166667 1=0.5
+Split                    splitncnn_13             1 3 113 114 115 116
+Pooling                  avgpool2d_4              1 1 116 117 0=1 1=80 11=1 12=1 13=0 2=80 3=0 5=1 6=0
+Pooling                  avgpool2d_5              1 1 115 118 0=1 1=1 11=80 12=80 13=0 2=1 3=0 5=1 6=0
+Permute                  permute_75               1 1 118 119 0=1
+Concat                   cat_6                    2 1 117 119 120 0=1
+Convolution              conv_67                  1 1 120 121 0=8 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256
+HardSwish                hswish_11                1 1 121 122 0=0.166667 1=0.5
+Slice                    tensor_split_2           1 2 122 123 124 -23300=2,80,-233 1=1
+Permute                  permute_76               1 1 124 125 0=1
+Convolution              convsigmoid_4            1 1 123 126 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+Convolution              convsigmoid_5            1 1 125 127 0=32 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=256 9=4
+BinaryOp                 mul_10                   2 1 114 127 128 0=2
+BinaryOp                 mul_11                   2 1 128 126 129 0=2
+BinaryOp                 add_12                   2 1 109 129 130 0=0
+Convolution              conv_70                  1 1 130 131 0=60 1=1 11=1 12=1 13=1 14=0 2=1 3=1 4=0 5=1 6=1920
+Reshape                  reshape_78               1 1 131 132 0=80 1=80 11=20 2=3
+Permute                  permute_77               1 1 132 133 0=3
+Sigmoid                  sigmoid_21               1 1 133 134
+Slice                    split_0                  1 3 134 135 136 137 -23300=3,2,2,16 1=3
+MemoryData               /model.8/Constant_2_output_0 0 1 138 0=2 1=80 11=80 2=3
+Eltwise                  weighted_sum_0           2 1 135 138 139 0=1 -23301=2,2.0,1.0
+BinaryOp                 mul_15                   1 1 139 140 0=2 1=1 2=8.0
+MemoryData               /model.8/Constant_6_output_0 0 1 141 0=2 1=80 11=80 2=3
+BinaryOp                 mul_16                   1 1 136 142 0=2 1=1 2=2.0
+UnaryOp                  pow_17                   1 1 142 143 0=4
+BinaryOp                 mul_18                   2 1 143 141 144 0=2
+Concat                   cat_7                    3 1 140 144 137 145 0=3
+Reshape                  reshape_79               1 1 145 out0 0=20 1=19200

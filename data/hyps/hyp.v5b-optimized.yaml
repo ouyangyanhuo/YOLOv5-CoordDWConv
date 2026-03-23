@@ -1,0 +1,35 @@
+# 学习率 - 提高以配合大batch
+lr0: 0.02                 # 提高！batch 512需要更高lr
+lrf: 0.01                 # 保持你的原值
+momentum: 0.937           # 保持原值
+weight_decay: 0.0003      # 降低！防止欠拟合
+
+# 预热
+warmup_epochs: 3.0        # 保持原值
+warmup_momentum: 0.8      
+warmup_bias_lr: 0.1
+
+# 损失权重 - 适度调整
+box: 0.07                 # 略微提高
+cls: 0.6                  # 略微提高
+cls_pw: 1.0
+obj: 1.0
+obj_pw: 1.0
+iou_t: 0.2                # 保持原值
+anchor_t: 4.0
+fl_gamma: 0.0
+
+# 数据增强 - 适度增强（不要太激进）
+hsv_h: 0.015              # 保持原值
+hsv_s: 0.7
+hsv_v: 0.4
+degrees: 3.0              # 轻微旋转
+translate: 0.1
+scale: 0.5
+shear: 0.0
+perspective: 0.0
+flipud: 0.0
+fliplr: 0.5
+mosaic: 1.0
+mixup: 0.05               # 轻微mixup
+copy_paste: 0.0
